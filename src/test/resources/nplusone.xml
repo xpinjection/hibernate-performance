@@ -1,0 +1,26 @@
+<dataset>
+    <Client id_client="1" name="Anton" age="20"/>
+    <Client id_client="2" name="Artem" age="24"/>
+    <Client id_client="3" name="Igor" age="19"/>
+    <Client id_client="4" name="Kolya" age="21"/>
+    <Client id_client="5" name="Andrey" age="25"/>
+    <Client id_client="6" name="Dima" age="26"/>
+    <Client id_client="7" name="Evgeniy" age="30"/>
+    <Client id_client="8" name="Nik" age="29"/>
+    <Client id_client="9" name="Max" age="27"/>
+    <Client id_client="10" name="Erik" age="29"/>
+
+    <Account id_account="1" amount="150" currency="EUR" id_client="1"/>
+    <Account id_account="2" amount="150" currency="USD" id_client="1"/>
+    <Account id_account="3" amount="150" currency="UAH" id_client="1"/>
+    <Account id_account="4" amount="90" currency="UAH" id_client="2"/>
+    <Account id_account="5" amount="300" currency="UAH" id_client="2"/>
+    <Account id_account="6" amount="500" currency="UAH" id_client="3"/>
+    <Account id_account="7" amount="40" currency="USD" id_client="4"/>
+    <Account id_account="8" amount="190" currency="USD" id_client="5"/>
+    <Account id_account="9" amount="50" currency="USD" id_client="6"/>
+    <Account id_account="10" amount="400" currency="EUR" id_client="7"/>
+    <Account id_account="11" amount="200" currency="EUR" id_client="8"/>
+    <Account id_account="12" amount="70" currency="EUR" id_client="9"/>
+    <Account id_account="13" amount="20" currency="EUR" id_client="10"/>
+</dataset>

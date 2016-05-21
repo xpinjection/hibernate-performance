@@ -1,0 +1,7 @@
+<dataset>
+    <Client id_client="1000" name="Anton" age="20"/>
+    <Client id_client="1001" name="Oleg" age="25"/>
+
+    <Account id_account="1000" amount="30" currency="USD" id_client="1000"/>
+    <Account id_account="1001" amount="70" currency="USD" id_client="1001"/>
+</dataset>

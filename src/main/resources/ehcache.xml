@@ -1,0 +1,19 @@
+<ehcache>
+    <cache name="referenceCache"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+           overflowToDisk="false">
+    </cache>
+
+    <cache name="org.hibernate.cache.internal.StandardQueryCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"/>
+
+    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+           maxElementsInMemory="50"
+           eternal="true"/>
+</ehcache>
