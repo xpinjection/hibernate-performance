@@ -17,6 +17,7 @@ import java.util.List;
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
  */
 @DatabaseSetup("/batchprocessing.xml")
+//@todo<lumii> understand why logging is so
 public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test

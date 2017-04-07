@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class DirtyCheckingTest extends BaseTest {
     @Test
     @Commit
+    //@todo<lumii> find where to put break point
     public void dirtyChecking() {
         Account account = session.get(Account.class, 1);
         account.setAmount(100);

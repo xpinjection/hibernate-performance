@@ -32,6 +32,7 @@ public class EntityCacheTest extends BaseTest {
     }
 
     @Test
+    //@todo<lumii> understand what the difference
     public void queryCacheInConjunctionWithSecondLevel() {
         String query = "select c from Client c";
         executeCacheableQuery(query);
