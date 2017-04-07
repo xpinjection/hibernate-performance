@@ -16,7 +16,8 @@ public class BatchFetchingTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void batchFetching() {
-        List<Client> clients = session.createQuery("select c from com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client c " +
+        List<Client> clients = session.createQuery("select c from " +
+                "com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client c " +
                 "where c.age >= :age")
                 .setParameter("age", 18)
                 .list();

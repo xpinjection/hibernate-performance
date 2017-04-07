@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
  */
 @SpringBootApplication
-@ComponentScan
+@ComponentScan()
 @EnableCaching
 public class Application {
 }

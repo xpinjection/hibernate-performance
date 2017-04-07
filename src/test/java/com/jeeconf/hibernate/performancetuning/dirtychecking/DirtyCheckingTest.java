@@ -7,7 +7,6 @@ import com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.StatelessSession;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.annotation.Commit;
 
@@ -34,16 +33,17 @@ public class DirtyCheckingTest extends BaseTest {
         // add @Immutable to Client
         Client client = session.get(Client.class, 1);
         // for queries it is also possible
-        // session.createQuery("select c from Client c").setReadOnly(true).list();
+        /*session.createQuery("select c " +
+                "from com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
+                .setReadOnly(true).list();*/
     }
 
     @Test
     @Commit
-    @Ignore
-    //@todo<lumii> doesn't work
     public void statelessSession() {
         StatelessSession statelessSession = getSessionFactory().openStatelessSession();
-        ScrollableResults scroll = statelessSession.createQuery("select c from Client c")
+        ScrollableResults scroll = statelessSession.createQuery("select c from " +
+                "com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
                 .scroll(ScrollMode.FORWARD_ONLY);
         int count = 0;
         while (scroll.next()) {

@@ -17,7 +17,6 @@ import java.util.List;
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
  */
 @DatabaseSetup("/batchprocessing.xml")
-//@todo<lumii> understand why logging is so
 public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test
@@ -25,6 +24,7 @@ public class BatchingProcessingTest extends BaseTest {
         for (int i = 0; i < 20; i++) {
             Client client = new Client();
             client.setName("Robot# " + i);
+            System.out.println("Generate client with account #" + i);
 
             Account account = new Account();
             client.getAccounts().add(account);
@@ -52,6 +52,7 @@ public class BatchingProcessingTest extends BaseTest {
         while (scroll.next()) {
             Client client = (Client) scroll.get(0);
             client.setName("NEW NAME");
+            System.out.println("Update client name #" + client.getId());
 
             if (++count % 10 == 0) { // the same as JDBC batch size
                 session.flush();

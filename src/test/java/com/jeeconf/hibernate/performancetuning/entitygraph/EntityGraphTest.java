@@ -17,7 +17,7 @@ public class EntityGraphTest extends BaseTest {
     @Test
     public void clientFetchAccounts() {
         List<Client> clients = findAdultClientsQuery()
-                //.setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
+                .setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
                 .getResultList();
         clients.forEach(c -> c.getAccounts().size());
     }
