@@ -16,7 +16,9 @@ import java.util.List;
 public class EntityGraphTest extends BaseTest {
     @Test
     public void clientFetchAccounts() {
-        List<Client> clients = findAdultClientsFetchAccounts();
+        List<Client> clients = findAdultClientsQuery()
+                //.setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
+                .getResultList();
         clients.forEach(c -> c.getAccounts().size());
     }
 
@@ -24,15 +26,5 @@ public class EntityGraphTest extends BaseTest {
         return em.createQuery("select c from com.jeeconf.hibernate.performancetuning.entitygraph.entity.Client c " +
                 "where c.age >= :age", Client.class)
                 .setParameter("age", 18);
-    }
-
-    public List<Client> findAdultClients() {
-        return findAdultClientsQuery().getResultList();
-    }
-
-    public List<Client> findAdultClientsFetchAccounts() {
-        return findAdultClientsQuery()
-                .setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
-                .getResultList();
     }
 }

@@ -11,18 +11,19 @@ import org.junit.Test;
  */
 @DatabaseSetup("/readonly.xml")
 public class ReadOnlyTest extends BaseTest {
+    @SuppressWarnings("unchecked")
     @Test
     public void hqlConstructor() {
         String query = "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +
                 "from Client c " +
                 "left join c.accounts a " +
                 "where c.id=:id group by a.client";
-        //noinspection unchecked
-        ClientSummary result = (ClientSummary) getSession().createQuery(query)
+        ClientSummary result = (ClientSummary) session.createQuery(query)
                 .setParameter("id", 1).uniqueResult();
         System.out.println(result);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void aliasToBeanResultTransformer() {
         String query = "select c.id as clientId," +
@@ -31,8 +32,7 @@ public class ReadOnlyTest extends BaseTest {
                 "from Client c " +
                 "left join c.accounts a where c.id = :id " +
                 "group by a.client";
-        //noinspection unchecked
-        ClientSummary result = (ClientSummary) getSession().createQuery(query)
+        ClientSummary result = (ClientSummary) session.createQuery(query)
                 .setParameter("id", 1)
                 .setResultTransformer(Transformers.aliasToBean(ClientSummary.class))
                 .uniqueResult();

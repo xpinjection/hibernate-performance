@@ -13,10 +13,10 @@ import java.util.List;
  */
 @DatabaseSetup("/nplusone.xml")
 public class BatchFetchingTest extends BaseTest {
+    @SuppressWarnings("unchecked")
     @Test
     public void batchFetching() {
-        //noinspection unchecked
-        List<Client> clients = getSession().createQuery("select c from com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client c " +
+        List<Client> clients = session.createQuery("select c from com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client c " +
                 "where c.age >= :age")
                 .setParameter("age", 18)
                 .list();
@@ -25,8 +25,8 @@ public class BatchFetchingTest extends BaseTest {
 
     @Test
     public void batchSizeCache() {
-        Account account1 = getSession().get(Account.class, 1);
-        Account account2 = getSession().get(Account.class, 4);
+        Account account1 = session.get(Account.class, 1);
+        Account account2 = session.get(Account.class, 4);
         account1.getClient().getName();
     }
 }

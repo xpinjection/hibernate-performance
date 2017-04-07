@@ -15,19 +15,19 @@ import static junit.framework.Assert.assertTrue;
 public class EntityCacheTest extends BaseTest {
     @Test
     public void secondLevelCache() {
-        City city = getSession().get(City.class, 1);
+        City city = session.get(City.class, 1);
         Cache secondLevelCache = getSessionFactory().getCache();
         assertTrue(secondLevelCache.containsEntity(City.class, 1));
         //secondLevelCache.evictEntity(City.class, 1);
-        getSession().clear(); // clear first level cache
-        City cachedCity = getSession().get(City.class, 1);
+        session.clear(); // clear first level cache
+        City cachedCity = session.get(City.class, 1);
     }
 
     @Test
     public void queryCache() {
         String query = "select c from City c";
         executeCacheableQuery(query);
-        getSession().clear();
+        session.clear();
         executeCacheableQuery(query);
     }
 
@@ -35,11 +35,11 @@ public class EntityCacheTest extends BaseTest {
     public void queryCacheInConjunctionWithSecondLevel() {
         String query = "select c from Client c";
         executeCacheableQuery(query);
-        getSession().clear();
+        session.clear();
         executeCacheableQuery(query);
     }
 
     private void executeCacheableQuery(String query) {
-        getSession().createQuery(query).setCacheable(true).list();
+        session.createQuery(query).setCacheable(true).list();
     }
 }

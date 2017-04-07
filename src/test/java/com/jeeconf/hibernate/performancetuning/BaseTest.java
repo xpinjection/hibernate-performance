@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.util.Arrays;
+
 import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoHolder.getQueryInfo;
 
 /**
@@ -36,12 +38,15 @@ public abstract class BaseTest {
             "****************************************************************"
     };
 
+    @PersistenceContext
+    protected EntityManager em;
+
+    protected Session session;
+
     @Before
     public void dbAllSet() {
-        for (String line : DB_UNIT_SET_UP) {
-            System.out.println(line);
-        }
-        System.out.println();
+        Arrays.stream(DB_UNIT_SET_UP).forEach(System.out::println);
+        session = em.unwrap(Session.class);
     }
 
     @AfterTransaction
@@ -49,14 +54,7 @@ public abstract class BaseTest {
         System.out.printf("\nSql count: " + getQueryInfo().countAll());
     }
 
-    @PersistenceContext
-    protected EntityManager em;
-
-    protected Session getSession() {
-        return em.unwrap(Session.class);
-    }
-
     protected SessionFactory getSessionFactory() {
-        return getSession().getSessionFactory();
+        return session.getSessionFactory();
     }
 }

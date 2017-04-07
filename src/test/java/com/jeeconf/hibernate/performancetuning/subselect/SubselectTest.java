@@ -12,10 +12,10 @@ import java.util.List;
  */
 @DatabaseSetup("/nplusone.xml")
 public class SubselectTest extends BaseTest {
+    @SuppressWarnings("unchecked")
     @Test
     public void subSelect() {
-        //noinspection unchecked
-        List<Client> clients = getSession().createQuery("select c from Client c " +
+        List<Client> clients = session.createQuery("select c from Client c " +
                 "where c.age >= :age")
                 .setParameter("age", 18)
                 .list();

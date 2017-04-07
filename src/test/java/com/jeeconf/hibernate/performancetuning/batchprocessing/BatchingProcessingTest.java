@@ -5,9 +5,9 @@ import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Account;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client;
 import org.hibernate.CacheMode;
-import org.hibernate.Query;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
+import org.hibernate.query.Query;
 import org.junit.Test;
 import org.springframework.test.annotation.Commit;
 
@@ -29,12 +29,12 @@ public class BatchingProcessingTest extends BaseTest {
             client.getAccounts().add(account);
             account.setClient(client);
 
-            getSession().persist(client);
-            getSession().persist(account);
+            session.persist(client);
+            session.persist(account);
 
             if (i % 10 == 0) { // the same as JDBC batch size
-                getSession().flush();
-                getSession().clear();
+                session.flush();
+                session.clear();
             }
         }
     }
@@ -42,7 +42,7 @@ public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test
     public void batchUpdate() {
-        Query query = getSession().createQuery("select c from " +
+        Query query = session.createQuery("select c from " +
                 "com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client c");
         ScrollableResults scroll = query.setFetchSize(50)
                 .setCacheMode(CacheMode.IGNORE)
@@ -53,21 +53,19 @@ public class BatchingProcessingTest extends BaseTest {
             client.setName("NEW NAME");
 
             if (++count % 10 == 0) { // the same as JDBC batch size
-                getSession().flush();
-                getSession().clear();
+                session.flush();
+                session.clear();
             }
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Commit
     @Test
     public void batchCascadeDelete() {
-        //noinspection unchecked
-        List<Client> clients = getSession().createQuery("select c from " +
+        List<Client> clients = session.createQuery("select c from " +
                 "com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client c")
                 .list();
-        for (Client client : clients) {
-            getSession().delete(client);
-        }
+        clients.forEach(session::delete);
     }
 }
