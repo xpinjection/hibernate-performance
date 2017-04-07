@@ -13,7 +13,6 @@ import java.util.List;
  */
 @DatabaseSetup("/nplusone.xml")
 public class BatchFetchingTest extends BaseTest {
-
     @Test
     public void batchFetching() {
         //noinspection unchecked
@@ -30,5 +29,4 @@ public class BatchFetchingTest extends BaseTest {
         Account account2 = getSession().get(Account.class, 4);
         account1.getClient().getName();
     }
-
 }

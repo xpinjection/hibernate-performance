@@ -4,7 +4,6 @@ package com.jeeconf.hibernate.performancetuning.sqltracker;
  * Created by Igor Dmitriev / Mikalai Alimenkou on 12/6/15
  */
 public class QueryCountInfoHandler implements QueryHandler {
-
     @Override
     public void handleSql(String sql) {
         QueryType queryType = getQueryType(sql);
@@ -27,7 +26,6 @@ public class QueryCountInfoHandler implements QueryHandler {
                 break;
             default:
                 throw new IllegalArgumentException("There is no QueryType hander:" + queryType);
-
         }
     }
 
@@ -64,5 +62,4 @@ public class QueryCountInfoHandler implements QueryHandler {
     private String removeRedundantSymbols(String query) {
         return query.replaceAll("--.*\n", "").replaceAll("\n", "").replaceAll("/\\*.*\\*/", "").trim();
     }
-
 }

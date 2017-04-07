@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
  */
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
-
     @PersistenceContext
     private EntityManager em;
 

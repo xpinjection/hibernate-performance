@@ -44,5 +44,4 @@ public class QueryCountInfo {
     public int countAll() {
         return selectCount + insertCount + updateCount + deleteCount + callCount;
     }
-
 }

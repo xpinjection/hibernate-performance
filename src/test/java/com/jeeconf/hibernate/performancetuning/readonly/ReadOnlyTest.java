@@ -6,13 +6,11 @@ import com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary;
 import org.hibernate.transform.Transformers;
 import org.junit.Test;
 
-
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
  */
 @DatabaseSetup("/readonly.xml")
 public class ReadOnlyTest extends BaseTest {
-
     @Test
     public void hqlConstructor() {
         String query = "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +

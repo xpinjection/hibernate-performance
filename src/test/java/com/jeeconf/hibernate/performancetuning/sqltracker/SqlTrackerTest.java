@@ -9,10 +9,8 @@ import org.junit.Test;
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 5/1/16
  */
-
 @DatabaseSetup("/sqltracker.xml")
 public class SqlTrackerTest extends BaseTest {
-
     @Test
     public void showStatistics() {
         Client client = getSession().get(Client.class, 1);

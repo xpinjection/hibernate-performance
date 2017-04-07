@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class ClientServiceImpl implements ClientService {
-
     private final ClientRepository clientRepository;
 
     @Autowired

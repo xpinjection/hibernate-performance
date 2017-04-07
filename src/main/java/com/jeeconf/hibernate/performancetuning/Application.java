@@ -11,5 +11,4 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 @EnableCaching
 public class Application {
-
 }

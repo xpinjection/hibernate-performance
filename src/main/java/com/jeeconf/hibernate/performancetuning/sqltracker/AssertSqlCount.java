@@ -6,7 +6,6 @@ import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoH
  * Created by Igor Dmitriev / Mikalai Alimenkou on 12/6/15
  */
 public class AssertSqlCount {
-
     public static void reset() {
         getQueryInfo().clear();
     }
@@ -37,5 +36,4 @@ public class AssertSqlCount {
             throw new SqlCountMismatchException(statement, expectedCount, actualCount);
         }
     }
-
 }

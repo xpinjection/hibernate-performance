@@ -13,7 +13,6 @@ import static junit.framework.Assert.assertTrue;
  */
 @DatabaseSetup("/cache.xml")
 public class EntityCacheTest extends BaseTest {
-
     @Test
     public void secondLevelCache() {
         City city = getSession().get(City.class, 1);

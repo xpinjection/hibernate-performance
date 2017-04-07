@@ -32,6 +32,4 @@ public class NplusOneTest extends BaseTest {
                 .list();
         clients.forEach(c -> c.getAccounts().size());
     }
-
-
 }

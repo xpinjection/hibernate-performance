@@ -21,7 +21,6 @@ import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoH
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @TestExecutionListeners({
@@ -31,7 +30,6 @@ import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoH
 })
 @Transactional
 public abstract class BaseTest {
-
     private static final String[] DB_UNIT_SET_UP = {"",
             "****************************************************************",
             "*************** DATABASE HAS BEEN ALREADY SET UP ***************",

@@ -18,7 +18,6 @@ import java.util.List;
  */
 @DatabaseSetup("/batchprocessing.xml")
 public class BatchingProcessingTest extends BaseTest {
-
     @Commit
     @Test
     public void batchInsert() {

@@ -14,7 +14,6 @@ import java.util.List;
  */
 @DatabaseSetup("/nplusone.xml")
 public class EntityGraphTest extends BaseTest {
-
     @Test
     public void clientFetchAccounts() {
         List<Client> clients = findAdultClientsFetchAccounts();
@@ -36,5 +35,4 @@ public class EntityGraphTest extends BaseTest {
                 .setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
                 .getResultList();
     }
-
 }
