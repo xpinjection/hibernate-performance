@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>HibernatePerformanceTuningJEEConf</groupId>
-    <artifactId>HibernatePerformanceTuningJEEConf</artifactId>
+    <groupId>com.xpinjection</groupId>
+    <artifactId>hibernate-performance-tuning</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -20,8 +20,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.jeeconf.hibernate.basics.Application</start-class>
         <java.version>1.8</java.version>
-        <hibernate.version>5.0.0.Final</hibernate.version>
-        <spring.version>4.2.4.RELEASE</spring.version>
+        <hibernate.version>5.2.9.Final</hibernate.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
-            <version>2.5.1</version>
+            <version>2.5.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -70,29 +70,22 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.4</version>
+            <version>1.16.16</version>
         </dependency>
 
         <!-- P6Spy -->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
-            <version>2.2.0</version>
+            <version>2.3.1</version>
         </dependency>
 
         <!--Ehcache -->
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>2.6.9</version>
-        </dependency>
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -126,6 +119,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
