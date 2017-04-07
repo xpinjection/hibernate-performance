@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xpinjection</groupId>
-    <artifactId>hibernate-performance-tuning</artifactId>
+    <groupId>com.jeeconf.hibernate</groupId>
+    <artifactId>performance-tuning</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.3.RELEASE</version>
+        <version>1.5.2.RELEASE</version>
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
