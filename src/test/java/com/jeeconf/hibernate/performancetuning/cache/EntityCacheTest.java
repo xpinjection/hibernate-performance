@@ -32,7 +32,6 @@ public class EntityCacheTest extends BaseTest {
     }
 
     @Test
-    //@todo<lumii> understand what the difference
     public void queryCacheInConjunctionWithSecondLevel() {
         String query = "select c from com.jeeconf.hibernate.performancetuning.cache.entity.Client c";
         executeCacheableQuery(query);
