@@ -18,9 +18,9 @@ public class SqlTrackerTest extends BaseTest {
 
     @Test
     public void sqlCountAssertion() {
-        AssertSqlCount.reset();
         Account account1 = session.get(Account.class, 1);
         Account account2 = session.get(Account.class, 2);
+
         AssertSqlCount.assertSelectCount(2);
     }
 }

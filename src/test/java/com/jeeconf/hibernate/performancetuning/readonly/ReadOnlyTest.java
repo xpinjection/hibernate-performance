@@ -3,6 +3,7 @@ package com.jeeconf.hibernate.performancetuning.readonly;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.transform.Transformers;
 import org.junit.Test;
 
@@ -21,6 +22,8 @@ public class ReadOnlyTest extends BaseTest {
         ClientSummary result = (ClientSummary) session.createQuery(query)
                 .setParameter("id", 1).uniqueResult();
         System.out.println(result);
+
+        AssertSqlCount.assertSelectCount(1);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,5 +40,7 @@ public class ReadOnlyTest extends BaseTest {
                 .setResultTransformer(Transformers.aliasToBean(ClientSummary.class))
                 .uniqueResult();
         System.out.println(result);
+
+        AssertSqlCount.assertSelectCount(1);
     }
 }

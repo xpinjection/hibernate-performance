@@ -2,6 +2,7 @@ package com.jeeconf.hibernate.performancetuning.subselect;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import com.jeeconf.hibernate.performancetuning.subselect.entity.Client;
 import org.junit.Test;
 
@@ -21,5 +22,7 @@ public class SubselectTest extends BaseTest {
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
+
+        AssertSqlCount.assertSelectCount(2);
     }
 }

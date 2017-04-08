@@ -4,6 +4,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Account;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.CacheMode;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
@@ -34,10 +35,11 @@ public class BatchingProcessingTest extends BaseTest {
             session.persist(account);
 
             if (i % 10 == 0) { // the same as JDBC batch size
-                session.flush();
-                session.clear();
+                flushAndClear();
             }
         }
+
+        AssertSqlCount.assertInsertCount(4);
     }
 
     @Commit
@@ -55,10 +57,13 @@ public class BatchingProcessingTest extends BaseTest {
             System.out.println("Update client name #" + client.getId());
 
             if (++count % 10 == 0) { // the same as JDBC batch size
-                session.flush();
-                session.clear();
+                flushAndClear();
             }
         }
+        flushAndClear();
+
+        AssertSqlCount.assertSelectCount(1);
+        AssertSqlCount.assertUpdateCount(1);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,5 +74,14 @@ public class BatchingProcessingTest extends BaseTest {
                 "com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client c")
                 .list();
         clients.forEach(session::delete);
+        flushAndClear();
+
+        AssertSqlCount.assertSelectCount(3);
+        AssertSqlCount.assertDeleteCount(4);
+    }
+
+    private void flushAndClear() {
+        session.flush();
+        session.clear();
     }
 }

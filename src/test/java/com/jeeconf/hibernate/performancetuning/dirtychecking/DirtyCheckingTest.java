@@ -4,6 +4,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Account;
 import com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.StatelessSession;
@@ -25,6 +26,8 @@ public class DirtyCheckingTest extends BaseTest {
         account.setAmount(100);
 
         Client client = session.get(Client.class, 1);
+
+        AssertSqlCount.assertSelectCount(2);
     }
 
     @Test
@@ -39,6 +42,8 @@ public class DirtyCheckingTest extends BaseTest {
         /*session.createQuery("select c " +
                 "from com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
                 .setReadOnly(true).list();*/
+
+        AssertSqlCount.assertSelectCount(1);
     }
 
     @Test
@@ -56,6 +61,7 @@ public class DirtyCheckingTest extends BaseTest {
             client.setName("TEST");
             statelessSession.update(client); // direct database low-level operation
         }
+
         assertEquals(1, count);
     }
 }

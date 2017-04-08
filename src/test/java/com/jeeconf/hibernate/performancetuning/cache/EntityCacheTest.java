@@ -3,6 +3,7 @@ package com.jeeconf.hibernate.performancetuning.cache;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.cache.entity.City;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.Cache;
 import org.junit.Test;
 
@@ -21,6 +22,8 @@ public class EntityCacheTest extends BaseTest {
         //secondLevelCache.evictEntity(City.class, 1);
         session.clear(); // clear first level cache
         City cachedCity = session.get(City.class, 1);
+
+        AssertSqlCount.assertSelectCount(1);
     }
 
     @Test
@@ -29,6 +32,8 @@ public class EntityCacheTest extends BaseTest {
         executeCacheableQuery(query);
         session.clear();
         executeCacheableQuery(query);
+
+        AssertSqlCount.assertSelectCount(1);
     }
 
     @Test
@@ -37,6 +42,8 @@ public class EntityCacheTest extends BaseTest {
         executeCacheableQuery(query);
         session.clear();
         executeCacheableQuery(query);
+
+        AssertSqlCount.assertSelectCount(3);
     }
 
     private void executeCacheableQuery(String query) {

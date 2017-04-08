@@ -3,6 +3,7 @@ package com.jeeconf.hibernate.performancetuning.entitygraph;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.entitygraph.entity.Client;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.annotations.QueryHints;
 import org.junit.Test;
 
@@ -20,6 +21,8 @@ public class EntityGraphTest extends BaseTest {
                 .setHint(QueryHints.FETCHGRAPH, em.getEntityGraph(Client.ACCOUNTS_GRAPH))
                 .getResultList();
         clients.forEach(c -> c.getAccounts().size());
+
+        AssertSqlCount.assertSelectCount(1);
     }
 
     private TypedQuery<Client> findAdultClientsQuery() {

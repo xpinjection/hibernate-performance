@@ -4,6 +4,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.batchfetching.entity.Account;
 import com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.junit.Test;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class BatchFetchingTest extends BaseTest {
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
+
+        AssertSqlCount.assertSelectCount(3);
     }
 
     @Test
@@ -29,5 +32,7 @@ public class BatchFetchingTest extends BaseTest {
         Account account1 = session.get(Account.class, 1);
         Account account2 = session.get(Account.class, 4);
         account1.getClient().getName();
+
+        AssertSqlCount.assertSelectCount(3);
     }
 }

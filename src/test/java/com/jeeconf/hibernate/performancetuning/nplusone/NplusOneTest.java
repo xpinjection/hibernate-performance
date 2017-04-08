@@ -3,6 +3,7 @@ package com.jeeconf.hibernate.performancetuning.nplusone;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.nplusone.entity.Client;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class NplusOneTest extends BaseTest {
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
+
+        AssertSqlCount.assertSelectCount(11);
     }
 
     @SuppressWarnings("unchecked")
@@ -31,5 +34,7 @@ public class NplusOneTest extends BaseTest {
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
+
+        AssertSqlCount.assertSelectCount(1);
     }
 }

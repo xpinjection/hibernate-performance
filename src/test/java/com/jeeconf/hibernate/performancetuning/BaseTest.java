@@ -1,6 +1,7 @@
 package com.jeeconf.hibernate.performancetuning;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
@@ -46,6 +47,7 @@ public abstract class BaseTest {
     @Before
     public void dbAllSet() {
         Arrays.stream(DB_UNIT_SET_UP).forEach(System.out::println);
+        AssertSqlCount.reset();
         session = em.unwrap(Session.class);
     }
 
