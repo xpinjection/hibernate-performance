@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import java.util.Arrays;
 
 import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoHolder.getQueryInfo;
@@ -24,8 +23,8 @@ import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoH
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = DbConfig.class)
 @TestExecutionListeners({
         TransactionalTestExecutionListener.class,
         DependencyInjectionTestExecutionListener.class,

@@ -4,7 +4,7 @@ package com.jeeconf.hibernate.performancetuning.sqltracker;
  * Created by Igor Dmitriev / Mikalai Alimenkou on 12/6/15
  */
 public class QueryCountInfoHolder {
-    private static ThreadLocal<QueryCountInfo> queryInfoHolder = new ThreadLocal<QueryCountInfo>() {
+    private static final ThreadLocal<QueryCountInfo> QUERY_INFO_HOLDER = new ThreadLocal<QueryCountInfo>() {
         @Override
         protected QueryCountInfo initialValue() {
             return new QueryCountInfo();
@@ -12,10 +12,10 @@ public class QueryCountInfoHolder {
     };
 
     public static QueryCountInfo getQueryInfo() {
-        return queryInfoHolder.get();
+        return QUERY_INFO_HOLDER.get();
     }
 
     public static void clear() {
-        queryInfoHolder.get().clear();
+        QUERY_INFO_HOLDER.get().clear();
     }
 }
