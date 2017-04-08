@@ -9,6 +9,7 @@ import org.hibernate.ScrollableResults;
 import org.hibernate.StatelessSession;
 import org.junit.Test;
 import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 public class DirtyCheckingTest extends BaseTest {
     @Test
     @Commit
-    //@todo<lumii> find where to put break point
     public void dirtyChecking() {
         Account account = session.get(Account.class, 1);
         account.setAmount(100);
@@ -29,6 +29,7 @@ public class DirtyCheckingTest extends BaseTest {
 
     @Test
     @Commit
+    @Transactional(readOnly = true)
     public void dirtyCheckingDisableForQuery() {
         // add @Immutable to Client
         Client client = session.get(Client.class, 1);
