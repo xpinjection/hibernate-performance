@@ -32,6 +32,8 @@ public class DirtyCheckingTest extends BaseTest {
     public void dirtyCheckingDisableForQuery() {
         // add @Immutable to Client
         Client client = session.get(Client.class, 1);
+        // or mark entity as read only
+        //session.setReadOnly(Client.class, true);
         // for queries it is also possible
         /*session.createQuery("select c " +
                 "from com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
