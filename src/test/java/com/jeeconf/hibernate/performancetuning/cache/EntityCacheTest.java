@@ -38,7 +38,7 @@ public class EntityCacheTest extends BaseTest {
 
     @Test
     public void queryCacheInConjunctionWithSecondLevel() {
-        String query = "select c from com.jeeconf.hibernate.performancetuning.cache.entity.Client c";
+        String query = "select c from CachableFromSecondLevelCacheClient c";
         executeCacheableQuery(query);
         session.clear();
         executeCacheableQuery(query);

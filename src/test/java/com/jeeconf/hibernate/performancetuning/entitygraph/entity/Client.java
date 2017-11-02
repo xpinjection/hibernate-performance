@@ -10,15 +10,16 @@ import java.util.List;
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
  */
-@Entity
+@Entity(name = "EntityGraphClient")
 @Getter
 @Setter
 @NamedEntityGraphs({
         @NamedEntityGraph(name = Client.ACCOUNTS_GRAPH,
                 attributeNodes = @NamedAttributeNode("accounts"))
 })
+@Table(name = "Client")
 public class Client {
-    public static final String ACCOUNTS_GRAPH = "Client[accounts]";
+    public static final String ACCOUNTS_GRAPH = "EntityGraphClient[accounts]";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

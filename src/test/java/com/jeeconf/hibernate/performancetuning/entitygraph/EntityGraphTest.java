@@ -26,8 +26,7 @@ public class EntityGraphTest extends BaseTest {
     }
 
     private TypedQuery<Client> findAdultClientsQuery() {
-        return em.createQuery("select c from com.jeeconf.hibernate.performancetuning.entitygraph.entity.Client c " +
-                "where c.age >= :age", Client.class)
+        return em.createQuery("select c from EntityGraphClient c where c.age >= :age", Client.class)
                 .setParameter("age", 18);
     }
 }

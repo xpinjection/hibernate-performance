@@ -16,8 +16,7 @@ public class NplusOneTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void npo() {
-        List<Client> clients = session.createQuery("select c from com.jeeconf.hibernate.performancetuning.nplusone.entity.Client" +
-                " c where c.age >= :age")
+        List<Client> clients = session.createQuery("select c from NPlusOneClient c where c.age >= :age")
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
@@ -28,9 +27,7 @@ public class NplusOneTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void joinFetch() {
-        List<Client> clients = session.createQuery("select c from com.jeeconf.hibernate.performancetuning.nplusone.entity.Client c" +
-                " join fetch c.accounts " +
-                " where c.age >= :age")
+        List<Client> clients = session.createQuery("select c from NPlusOneClient c join fetch c.accounts where c.age >= :age")
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());
