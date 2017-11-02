@@ -16,9 +16,7 @@ public class SubselectTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void subSelect() {
-        List<Client> clients = session.createQuery("select c from " +
-                "com.jeeconf.hibernate.performancetuning.subselect.entity.Client c " +
-                "where c.age >= :age")
+        List<Client> clients = session.createQuery("select c from SubSelectableEntity c where c.age >= :age")
                 .setParameter("age", 18)
                 .list();
         clients.forEach(c -> c.getAccounts().size());

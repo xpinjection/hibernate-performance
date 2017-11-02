@@ -12,9 +12,10 @@ import java.util.List;
 /**
  * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
  */
-@Entity
+@Entity(name = "SubSelectableEntity")
 @Getter
 @Setter
+@Table(name = "Client")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
