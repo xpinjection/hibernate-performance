@@ -2,9 +2,6 @@ package com.jeeconf.hibernate.performancetuning.sqltracker;
 
 import lombok.Getter;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 12/6/15
- */
 @Getter
 public class QueryCountInfo {
     private int selectCount;

@@ -7,9 +7,6 @@ import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.transform.Transformers;
 import org.junit.Test;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
- */
 @DatabaseSetup("/readonly.xml")
 public class ReadOnlyTest extends BaseTest {
     @SuppressWarnings("unchecked")

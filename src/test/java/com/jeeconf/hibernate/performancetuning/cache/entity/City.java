@@ -7,10 +7,6 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
- */
-
 @Entity
 @Getter
 @Cacheable

@@ -10,9 +10,6 @@ import org.junit.Test;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 5/18/16
- */
 @DatabaseSetup("/nplusone.xml")
 public class EntityGraphTest extends BaseTest {
     @Test

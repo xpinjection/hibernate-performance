@@ -9,9 +9,6 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertTrue;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
- */
 @DatabaseSetup("/cache.xml")
 public class EntityCacheTest extends BaseTest {
     @Test

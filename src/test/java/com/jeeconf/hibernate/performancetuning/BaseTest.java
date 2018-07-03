@@ -20,9 +20,6 @@ import java.util.Arrays;
 
 import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoHolder.getQueryInfo;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DbConfig.class)
 @TestExecutionListeners({

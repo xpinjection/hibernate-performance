@@ -9,9 +9,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/29/16
- */
 @Entity
 @Getter
 @Setter

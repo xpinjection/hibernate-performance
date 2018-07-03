@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 5/18/16
- */
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
     @PersistenceContext

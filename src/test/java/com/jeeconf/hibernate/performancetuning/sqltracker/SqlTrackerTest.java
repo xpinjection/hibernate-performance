@@ -6,9 +6,6 @@ import com.jeeconf.hibernate.performancetuning.sqltracker.entity.Account;
 import com.jeeconf.hibernate.performancetuning.sqltracker.entity.Client;
 import org.junit.Test;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 5/1/16
- */
 @DatabaseSetup("/sqltracker.xml")
 public class SqlTrackerTest extends BaseTest {
     @Test

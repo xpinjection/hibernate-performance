@@ -8,9 +8,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 5/18/16
- */
 @DatabaseSetup("/nplusone.xml")
 public class SubselectTest extends BaseTest {
     @SuppressWarnings("unchecked")

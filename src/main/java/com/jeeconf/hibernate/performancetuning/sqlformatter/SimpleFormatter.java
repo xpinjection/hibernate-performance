@@ -4,9 +4,6 @@ import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 import org.hibernate.engine.jdbc.internal.BasicFormatterImpl;
 import org.hibernate.engine.jdbc.internal.Formatter;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 1/3/16
- */
 public class SimpleFormatter implements MessageFormattingStrategy {
     private static final Formatter HIBERNATE_SQL_FORMATTER = new BasicFormatterImpl();
 

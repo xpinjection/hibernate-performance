@@ -1,8 +1,5 @@
 package com.jeeconf.hibernate.performancetuning.sqltracker;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 12/6/15
- */
 public class QueryCountInfoHandler implements QueryHandler {
     @Override
     public void handleSql(String sql) {
@@ -29,37 +26,34 @@ public class QueryCountInfoHandler implements QueryHandler {
         }
     }
 
-    protected QueryType getQueryType(String query) {
+    private QueryType getQueryType(String query) {
         query = query.toLowerCase();
-        final String trimmedQuery = removeRedundantSymbols(query);
-        final char firstChar = trimmedQuery.charAt(0);
+        String trimmedQuery = removeRedundantSymbols(query);
+        char firstChar = trimmedQuery.charAt(0);
 
-        final QueryType type;
+        QueryType type;
         switch (firstChar) {
             case 'w': // query can be started 'with'
             case 's':
-                type = QueryType.SELECT;
-                break;
+                return QueryType.SELECT;
             case 'i':
-                type = QueryType.INSERT;
-                break;
+                return QueryType.INSERT;
             case 'u':
-                type = QueryType.UPDATE;
-                break;
+                return QueryType.UPDATE;
             case 'd':
-                type = QueryType.DELETE;
-                break;
+                return QueryType.DELETE;
             case 'c':
             case '?':
-                type = QueryType.CALL;
-                break;
+                return QueryType.CALL;
             default:
-                throw new AssertionError("Unknown QueryType");
+                throw new AssertionError("Unknown QueryType: " + trimmedQuery);
         }
-        return type;
     }
 
     private String removeRedundantSymbols(String query) {
-        return query.replaceAll("--.*\n", "").replaceAll("\n", "").replaceAll("/\\*.*\\*/", "").trim();
+        return query.replaceAll("--.*\n", "")
+                .replaceAll("\n", "")
+                .replaceAll("/\\*.*\\*/", "")
+                .trim();
     }
 }

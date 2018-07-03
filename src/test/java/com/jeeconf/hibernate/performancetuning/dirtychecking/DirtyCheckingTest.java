@@ -14,9 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Igor Dmitriev on 5/18/16
- */
 @DatabaseSetup("/readonly.xml")
 public class DirtyCheckingTest extends BaseTest {
     @Test

@@ -14,9 +14,6 @@ import org.springframework.test.annotation.Commit;
 
 import java.util.List;
 
-/**
- * Created by Igor Dmitriev / Mikalai Alimenkou on 4/30/16
- */
 @DatabaseSetup("/batchprocessing.xml")
 public class BatchingProcessingTest extends BaseTest {
     @Commit
