@@ -8,9 +8,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "CachableFromSecondLevelCacheClient")
 @Getter
 @Setter
+@Table(name = "Client")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -8,10 +8,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "BatchableFetchedClientEntity")
 @Getter
 @Setter
 @BatchSize(size = 5)
+@Table(name = "Client")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

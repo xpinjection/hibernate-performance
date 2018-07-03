@@ -42,8 +42,7 @@ public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test
     public void batchUpdate() {
-        Query query = session.createQuery("select c from " +
-                "com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client c");
+        Query query = session.createQuery("select c from BatchableClientEntity c");
         ScrollableResults scroll = query.setFetchSize(50)
                 .setCacheMode(CacheMode.IGNORE)
                 .scroll(ScrollMode.FORWARD_ONLY);
@@ -67,8 +66,7 @@ public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test
     public void batchCascadeDelete() {
-        List<Client> clients = session.createQuery("select c from " +
-                "com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client c")
+        List<Client> clients = session.createQuery("select c from BatchableClientEntity c")
                 .list();
         clients.forEach(session::delete);
         flushAndClear();

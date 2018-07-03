@@ -7,15 +7,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "EntityGraphClient")
 @Getter
 @Setter
 @NamedEntityGraphs({
         @NamedEntityGraph(name = Client.ACCOUNTS_GRAPH,
                 attributeNodes = @NamedAttributeNode("accounts"))
 })
+@Table(name = "Client")
 public class Client {
-    public static final String ACCOUNTS_GRAPH = "Client[accounts]";
+    public static final String ACCOUNTS_GRAPH = "EntityGraphClient[accounts]";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -37,7 +37,7 @@ public class DirtyCheckingTest extends BaseTest {
         //session.setReadOnly(Client.class, true);
         // for queries it is also possible
         /*session.createQuery("select c " +
-                "from com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
+                "from DirtyCheckableClient c")
                 .setReadOnly(true).list();*/
 
         AssertSqlCount.assertSelectCount(1);
@@ -47,8 +47,7 @@ public class DirtyCheckingTest extends BaseTest {
     @Commit
     public void statelessSession() {
         StatelessSession statelessSession = getSessionFactory().openStatelessSession();
-        ScrollableResults scroll = statelessSession.createQuery("select c from " +
-                "com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
+        ScrollableResults scroll = statelessSession.createQuery("select c from DirtyCheckableClient c")
                 .scroll(ScrollMode.FORWARD_ONLY);
         int count = 0;
         while (scroll.next()) {
