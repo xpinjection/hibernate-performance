@@ -21,7 +21,7 @@ import java.util.Arrays;
 import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoHolder.getQueryInfo;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DbConfig.class)
+@SpringBootTest
 @TestExecutionListeners({
         TransactionalTestExecutionListener.class,
         DependencyInjectionTestExecutionListener.class,
