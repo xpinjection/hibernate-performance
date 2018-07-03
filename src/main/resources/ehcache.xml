@@ -7,13 +7,13 @@
            overflowToDisk="false">
     </cache>
 
-    <cache name="org.hibernate.cache.internal.StandardQueryCache"
+    <cache name="org.hibernate.cache.spi.QueryResultsRegion"
            maxElementsInMemory="500"
            eternal="false"
            timeToIdleSeconds="600"
            timeToLiveSeconds="3600"/>
 
-    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+    <cache name="org.hibernate.cache.spi.TimestampsRegion"
            maxElementsInMemory="50"
            eternal="true"/>
 </ehcache>
