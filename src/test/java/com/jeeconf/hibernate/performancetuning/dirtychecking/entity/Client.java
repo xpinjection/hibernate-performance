@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "DirtyCheckableClient")
 @Getter
 @Setter
+@Entity(name = "DirtyCheckableClient")
 @Table(name = "Client")
 public class Client {
     @Id

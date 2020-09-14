@@ -7,11 +7,12 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Cacheable
 @Cache(region = "referenceCache", usage = CacheConcurrencyStrategy.READ_ONLY)
 @Immutable
+@Entity(name = "CachableFromSecondLevelCacheCity")
+@Table(name = "City")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

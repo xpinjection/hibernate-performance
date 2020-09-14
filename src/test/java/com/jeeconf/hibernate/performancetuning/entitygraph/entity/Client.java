@@ -7,13 +7,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "EntityGraphClient")
 @Getter
 @Setter
 @NamedEntityGraphs({
         @NamedEntityGraph(name = Client.ACCOUNTS_GRAPH,
                 attributeNodes = @NamedAttributeNode("accounts"))
 })
+@Entity(name = "EntityGraphClient")
 @Table(name = "Client")
 public class Client {
     public static final String ACCOUNTS_GRAPH = "EntityGraphClient[accounts]";

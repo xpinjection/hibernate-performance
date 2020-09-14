@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "NPlusOneClient")
 @Getter
 @Setter
+@Entity(name = "NPlusOneClient")
 @Table(name = "Client")
 public class Client {
     @Id

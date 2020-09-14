@@ -8,10 +8,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "BatchableFetchedClientEntity")
 @Getter
 @Setter
 @BatchSize(size = 5)
+@Entity(name = "BatchableFetchedClientEntity")
 @Table(name = "Client")
 public class Client {
     @Id
