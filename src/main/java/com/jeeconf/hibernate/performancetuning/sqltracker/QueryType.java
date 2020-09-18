@@ -1,5 +1,10 @@
 package com.jeeconf.hibernate.performancetuning.sqltracker;
 
 public enum QueryType {
-    SELECT, INSERT, UPDATE, DELETE, CALL
+    SELECT,
+    NEXTVAL,
+    INSERT,
+    UPDATE,
+    DELETE,
+    CALL
 }

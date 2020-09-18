@@ -11,6 +11,10 @@ public class AssertSqlCount {
         assertSqlCount("select", expectedSelectCount, getQueryInfo().getSelectCount());
     }
 
+    public static void assertNextvalCount(int expectedNextvalCount) {
+        assertSqlCount("select nextval", expectedNextvalCount, getQueryInfo().getNextvalCount());
+    }
+
     public static void assertUpdateCount(int expectedUpdateCount) {
         assertSqlCount("update", expectedUpdateCount, getQueryInfo().getUpdateCount());
     }

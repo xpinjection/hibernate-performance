@@ -9,6 +9,9 @@ public class QueryCountInfoHandler implements QueryHandler {
             case SELECT:
                 queryCountInfo.incrementSelectCount();
                 break;
+            case NEXTVAL:
+                queryCountInfo.incrementNextvalCount();
+                break;
             case INSERT:
                 queryCountInfo.incrementInsertCount();
                 break;
@@ -29,9 +32,11 @@ public class QueryCountInfoHandler implements QueryHandler {
     private QueryType getQueryType(String query) {
         query = query.toLowerCase();
         String trimmedQuery = removeRedundantSymbols(query);
-        char firstChar = trimmedQuery.charAt(0);
 
-        QueryType type;
+        if (trimmedQuery.startsWith("select nextval"))
+            return QueryType.NEXTVAL;
+
+        char firstChar = trimmedQuery.charAt(0);
         switch (firstChar) {
             case 'w': // query can be started 'with'
             case 's':

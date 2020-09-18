@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public class QueryCountInfo {
     private int selectCount;
+    private int nextvalCount;
     private int insertCount;
     private int updateCount;
     private int deleteCount;
@@ -16,6 +17,10 @@ public class QueryCountInfo {
 
     public void incrementInsertCount() {
         insertCount++;
+    }
+
+    public void incrementNextvalCount() {
+        nextvalCount++;
     }
 
     public void incrementUpdateCount() {
@@ -32,6 +37,7 @@ public class QueryCountInfo {
 
     public void clear() {
         selectCount = 0;
+        nextvalCount = 0;
         insertCount = 0;
         updateCount = 0;
         deleteCount = 0;
@@ -39,6 +45,6 @@ public class QueryCountInfo {
     }
 
     public int countAll() {
-        return selectCount + insertCount + updateCount + deleteCount + callCount;
+        return selectCount + nextvalCount + insertCount + updateCount + deleteCount + callCount;
     }
 }
