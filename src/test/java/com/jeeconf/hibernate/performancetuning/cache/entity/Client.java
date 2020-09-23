@@ -8,9 +8,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "CachableFromSecondLevelCacheClient")
 @Getter
 @Setter
+@Entity(name = "CachableFromSecondLevelCacheClient")
 @Table(name = "Client")
 public class Client {
     @Id

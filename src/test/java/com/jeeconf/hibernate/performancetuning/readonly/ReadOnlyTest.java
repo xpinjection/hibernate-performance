@@ -13,7 +13,7 @@ public class ReadOnlyTest extends BaseTest {
     @Test
     public void hqlConstructor() {
         String query = "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +
-                "from Client c " +
+                "from ReadOnlyClient c " +
                 "left join c.accounts a " +
                 "where c.id=:id group by a.client";
         ClientSummary result = (ClientSummary) session.createQuery(query)
@@ -29,7 +29,7 @@ public class ReadOnlyTest extends BaseTest {
         String query = "select c.id as clientId," +
                 "c.name as clientName," +
                 "sum(a.amount) as totalAmount " +
-                "from Client c " +
+                "from ReadOnlyClient c " +
                 "left join c.accounts a where c.id = :id " +
                 "group by a.client";
         ClientSummary result = (ClientSummary) session.createQuery(query)

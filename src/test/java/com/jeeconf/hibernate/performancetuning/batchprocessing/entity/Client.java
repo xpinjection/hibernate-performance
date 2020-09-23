@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "BatchableClientEntity")
 @Getter
 @Setter
+@Entity(name = "BatchableClientEntity")
 @Table(name = "Client")
 public class Client {
     @Id

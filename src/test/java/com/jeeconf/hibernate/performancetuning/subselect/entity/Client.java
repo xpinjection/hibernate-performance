@@ -9,9 +9,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "SubSelectableEntity")
 @Getter
 @Setter
+@Entity(name = "SubSelectableEntity")
 @Table(name = "Client")
 public class Client {
     @Id

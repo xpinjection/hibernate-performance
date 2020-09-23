@@ -25,7 +25,7 @@ public class EntityCacheTest extends BaseTest {
 
     @Test
     public void queryCache() {
-        String query = "select c from City c";
+        String query = "select c from CachableFromSecondLevelCacheCity c";
         executeCacheableQuery(query);
         session.clear();
         executeCacheableQuery(query);
