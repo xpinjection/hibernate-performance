@@ -1,17 +1,18 @@
 package com.jeeconf.hibernate.performancetuning.batchfetching;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.batchfetching.entity.Account;
 import com.jeeconf.hibernate.performancetuning.batchfetching.entity.Client;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-@DatabaseSetup("/nplusone.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+
+@Sql("/nplusone.sql")
+@SuppressWarnings({"unchecked", "ResultOfMethodCallIgnored"})
 public class BatchFetchingTest extends BaseTest {
-    @SuppressWarnings("unchecked")
     @Test
     public void batchFetching() {
         List<Client> clients = session.createQuery("select c from BatchableFetchedClientEntity c where c.age >= :age")
@@ -19,7 +20,7 @@ public class BatchFetchingTest extends BaseTest {
                 .list();
         clients.forEach(c -> c.getAccounts().size());
 
-        AssertSqlCount.assertSelectCount(3);
+        assertSelectCount(3);
     }
 
     @Test
@@ -28,6 +29,6 @@ public class BatchFetchingTest extends BaseTest {
         Account account2 = session.get(Account.class, 4);
         account1.getClient().getName();
 
-        AssertSqlCount.assertSelectCount(3);
+        assertSelectCount(3);
     }
 }

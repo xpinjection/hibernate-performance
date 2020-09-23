@@ -1,15 +1,15 @@
 package com.jeeconf.hibernate.performancetuning.cache;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.cache.entity.City;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.Cache;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
-import static junit.framework.Assert.assertTrue;
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DatabaseSetup("/cache.xml")
+@Sql("/cache.sql")
 public class EntityCacheTest extends BaseTest {
     @Test
     public void secondLevelCache() {
@@ -20,7 +20,7 @@ public class EntityCacheTest extends BaseTest {
         session.clear(); // clear first level cache
         City cachedCity = session.get(City.class, 1);
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class EntityCacheTest extends BaseTest {
         session.clear();
         executeCacheableQuery(query);
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class EntityCacheTest extends BaseTest {
         session.clear();
         executeCacheableQuery(query);
 
-        AssertSqlCount.assertSelectCount(3);
+        assertSelectCount(3);
     }
 
     private void executeCacheableQuery(String query) {

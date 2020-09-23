@@ -1,20 +1,22 @@
 package com.jeeconf.hibernate.performancetuning.batchprocessing;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Account;
 import com.jeeconf.hibernate.performancetuning.batchprocessing.entity.Client;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.CacheMode;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.query.Query;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-@DatabaseSetup("/batchprocessing.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.*;
+
+@Sql("/batchprocessing.sql")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class BatchingProcessingTest extends BaseTest {
     @Commit
     @Test
@@ -36,7 +38,7 @@ public class BatchingProcessingTest extends BaseTest {
             }
         }
 
-        AssertSqlCount.assertInsertCount(4);
+        assertInsertCount(4);
     }
 
     @Commit
@@ -58,11 +60,10 @@ public class BatchingProcessingTest extends BaseTest {
         }
         flushAndClear();
 
-        AssertSqlCount.assertSelectCount(1);
-        AssertSqlCount.assertUpdateCount(1);
+        assertSelectCount(1);
+        assertUpdateCount(1);
     }
 
-    @SuppressWarnings("unchecked")
     @Commit
     @Test
     public void batchCascadeDelete() {
@@ -71,8 +72,8 @@ public class BatchingProcessingTest extends BaseTest {
         clients.forEach(session::delete);
         flushAndClear();
 
-        AssertSqlCount.assertSelectCount(3);
-        AssertSqlCount.assertDeleteCount(4);
+        assertSelectCount(3);
+        assertDeleteCount(4);
     }
 
     private void flushAndClear() {

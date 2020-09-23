@@ -1,15 +1,15 @@
 package com.jeeconf.hibernate.performancetuning.readonly;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.transform.Transformers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
-@DatabaseSetup("/readonly.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+
+@Sql("/readonly.sql")
 public class ReadOnlyTest extends BaseTest {
-    @SuppressWarnings("unchecked")
     @Test
     public void hqlConstructor() {
         String query = "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +
@@ -20,10 +20,9 @@ public class ReadOnlyTest extends BaseTest {
                 .setParameter("id", 1).uniqueResult();
         System.out.println(result);
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void aliasToBeanResultTransformer() {
         String query = "select c.id as clientId," +
@@ -38,6 +37,6 @@ public class ReadOnlyTest extends BaseTest {
                 .uniqueResult();
         System.out.println(result);
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 }
