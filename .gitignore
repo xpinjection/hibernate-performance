@@ -1,6 +1,8 @@
 # Idea
 .idea/
+*.iws
 *.iml
+*.ipr
 
 # Maven
 target/
