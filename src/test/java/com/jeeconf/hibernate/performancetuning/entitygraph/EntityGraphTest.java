@@ -1,16 +1,18 @@
 package com.jeeconf.hibernate.performancetuning.entitygraph;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.entitygraph.entity.Client;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.annotations.QueryHints;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@DatabaseSetup("/nplusone.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+
+@Sql("/nplusone.sql")
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class EntityGraphTest extends BaseTest {
     @Test
     public void clientFetchAccounts() {
@@ -19,7 +21,7 @@ public class EntityGraphTest extends BaseTest {
                 .getResultList();
         clients.forEach(c -> c.getAccounts().size());
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 
     private TypedQuery<Client> findAdultClientsQuery() {

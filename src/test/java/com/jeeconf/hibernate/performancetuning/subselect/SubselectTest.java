@@ -1,16 +1,17 @@
 package com.jeeconf.hibernate.performancetuning.subselect;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import com.jeeconf.hibernate.performancetuning.subselect.entity.Client;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-@DatabaseSetup("/nplusone.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+
+@Sql("/nplusone.sql")
+@SuppressWarnings({"unchecked", "ResultOfMethodCallIgnored"})
 public class SubselectTest extends BaseTest {
-    @SuppressWarnings("unchecked")
     @Test
     public void subSelect() {
         List<Client> clients = session.createQuery("select c from SubSelectableEntity c where c.age >= :age")
@@ -18,6 +19,6 @@ public class SubselectTest extends BaseTest {
                 .list();
         clients.forEach(c -> c.getAccounts().size());
 
-        AssertSqlCount.assertSelectCount(2);
+        assertSelectCount(2);
     }
 }

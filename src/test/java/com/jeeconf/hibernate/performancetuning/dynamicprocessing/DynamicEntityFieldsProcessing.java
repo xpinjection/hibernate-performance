@@ -1,13 +1,15 @@
 package com.jeeconf.hibernate.performancetuning.dynamicprocessing;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.dynamicprocessing.entity.Client;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.jdbc.Sql;
 
-@DatabaseSetup("/dynamicprocessing.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertUpdateCount;
+
+@Sql("/dynamicprocessing.sql")
 public class DynamicEntityFieldsProcessing extends BaseTest {
     @Test
     @Commit
@@ -17,7 +19,7 @@ public class DynamicEntityFieldsProcessing extends BaseTest {
         client.setAge(35);
         session.flush();
 
-        AssertSqlCount.assertSelectCount(1);
-        AssertSqlCount.assertUpdateCount(1);
+        assertSelectCount(1);
+        assertUpdateCount(1);
     }
 }

@@ -1,20 +1,20 @@
 package com.jeeconf.hibernate.performancetuning.dirtychecking;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Account;
 import com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client;
-import com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.StatelessSession;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertEquals;
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DatabaseSetup("/readonly.xml")
+@Sql("/readonly.sql")
 public class DirtyCheckingTest extends BaseTest {
     @Test
     @Commit
@@ -24,7 +24,7 @@ public class DirtyCheckingTest extends BaseTest {
 
         Client client = session.get(Client.class, 1);
 
-        AssertSqlCount.assertSelectCount(2);
+        assertSelectCount(2);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class DirtyCheckingTest extends BaseTest {
                 "from DirtyCheckableClient c")
                 .setReadOnly(true).list();*/
 
-        AssertSqlCount.assertSelectCount(1);
+        assertSelectCount(1);
     }
 
     @Test

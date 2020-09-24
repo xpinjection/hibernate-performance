@@ -1,12 +1,14 @@
 package com.jeeconf.hibernate.performancetuning.sqltracker;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.sqltracker.entity.Account;
 import com.jeeconf.hibernate.performancetuning.sqltracker.entity.Client;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
-@DatabaseSetup("/sqltracker.xml")
+import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.assertSelectCount;
+
+@Sql("/sqltracker.sql")
 public class SqlTrackerTest extends BaseTest {
     @Test
     public void showStatistics() {
@@ -18,6 +20,6 @@ public class SqlTrackerTest extends BaseTest {
         Account account1 = session.get(Account.class, 1);
         Account account2 = session.get(Account.class, 2);
 
-        AssertSqlCount.assertSelectCount(2);
+        assertSelectCount(2);
     }
 }

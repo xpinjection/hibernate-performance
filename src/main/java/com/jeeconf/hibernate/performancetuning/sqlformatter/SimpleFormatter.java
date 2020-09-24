@@ -16,4 +16,3 @@ public class SimpleFormatter implements MessageFormattingStrategy {
         return String.format("Hibernate: %s %s {elapsed: %dms}", batch, HIBERNATE_SQL_FORMATTER.format(sql), elapsed);
     }
 }
-

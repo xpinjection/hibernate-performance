@@ -2,7 +2,7 @@ package com.jeeconf.hibernate.performancetuning.sqltracker;
 
 import com.jeeconf.hibernate.performancetuning.BaseTest;
 import com.jeeconf.hibernate.performancetuning.sqltracker.entity.Client;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.jeeconf.hibernate.performancetuning.sqltracker.AssertSqlCount.*;
 
